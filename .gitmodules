@@ -22,3 +22,9 @@
 [submodule "externals/XNA"]
 	path = externals/XNA
 	url = git@github.com:dmanning23/XnaCompiledResources.git
+[submodule "externals/OperatorSettingsBuddy"]
+	path = externals/OperatorSettingsBuddy
+	url = git@github.com:dmanning23/OperatorSettingsBuddy.git
+[submodule "externals/InsertCoinBuddy"]
+	path = externals/InsertCoinBuddy
+	url = git@github.com:dmanning23/InsertCoinBuddy.git

@@ -1,11 +1,7 @@
 using MenuBuddy;
 using Microsoft.Xna.Framework;
 
-#if OUYA
-using Ouya.Console.Api;
-#endif
-
-namespace MenuBuddySample
+namespace InsertCoinBuddySample
 {
 	public class DummyScreenManager : ScreenManager
 	{

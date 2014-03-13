@@ -1,12 +1,10 @@
-using System;
+using InsertCoinBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 using ResolutionBuddy;
-using MenuBuddy;
 
-namespace MenuBuddySample
+namespace InsertCoinBuddySample
 {
 	/// <summary>
 	/// This is the main type for your game
@@ -15,6 +13,11 @@ namespace MenuBuddySample
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
+
+		/// <summary>
+		/// The credit manager.
+		/// </summary>
+		private CreditsManager _creditManager;
 
 		private readonly DummyScreenManager _ScreenManager;
 
@@ -25,15 +28,19 @@ namespace MenuBuddySample
 			Resolution.Init(ref graphics);
 			Content.RootDirectory = "Content";
 
+			//Setup the credits manager.
+			_creditManager = new CreditsManager();
+			_creditManager.CoinsPerCredit = 3; //$.75 per game
+			_creditManager.FreePlay = false;
+
 			// Create the screen manager component.
 			_ScreenManager = new DummyScreenManager(this);
-
 			_ScreenManager.ClearColor = new Color(0.5f, 0.5f, 0.5f);
 			Components.Add(_ScreenManager);
 
 			// Activate the first screens.
 			_ScreenManager.AddScreen(_ScreenManager.GetMainMenuScreenStack(), null);
-			_ScreenManager.SetTopScreen(new TopScreen(), null);
+			_ScreenManager.SetTopScreen(new InsertCoinScreen("ArialBlack24", "ArialBlack24", _creditManager), null);
 		}
 
 		/// <summary>
@@ -74,11 +81,28 @@ namespace MenuBuddySample
 		protected override void Update(GameTime gameTime)
 		{
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
-			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+			if ((GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed) ||
+				Keyboard.GetState().IsKeyDown(Keys.Escape))
 			{
 				Exit();
 			}
-			// TODO: Add your update logic here			
+
+			//Update the credit manager...
+			_creditManager.Update();
+
+			//Listen for game start...
+			if (Keyboard.GetState().IsKeyDown(Keys.W))
+			{
+				//Can we start a game?
+				if (_creditManager.StartGame())
+				{
+					//Clear out all the screens and start a game.
+					MenuBuddy.LoadingScreen.Load(_ScreenManager, false, null, new GameplayScreen(_creditManager));
+					_creditManager.GameInPlay = true;
+				}
+			}
+
+			// TODO: Add your update logic here
 			base.Update(gameTime);
 		}
 

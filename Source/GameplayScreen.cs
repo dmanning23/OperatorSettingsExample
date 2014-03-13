@@ -1,19 +1,21 @@
+using FontBuddyLib;
+using InsertCoinBuddy;
 using MenuBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using FontBuddyLib;
+using Microsoft.Xna.Framework.Input;
 using ResolutionBuddy;
 
-namespace MenuBuddySample
+namespace InsertCoinBuddySample
 {
 	/// <summary>
 	/// This screen displays on top of all the other screens
 	/// </summary>
-	internal class TopScreen : GameScreen
+	internal class GameplayScreen : GameScreen
 	{
 		#region Fields
 
-		const float TextVelocity = 2.0f;
+		const float TextVelocity = 3.0f;
 
 		/// <summary>
 		/// current location of the text
@@ -30,6 +32,8 @@ namespace MenuBuddySample
 		/// </summary>
 		FontBuddy Text;
 
+		CreditsManager _manager;
+
 		#endregion //Fields
 
 		#region Initialization
@@ -37,8 +41,10 @@ namespace MenuBuddySample
 		/// <summary>
 		/// Constructor fills in the menu contents.
 		/// </summary>
-		public TopScreen()
+		public GameplayScreen(CreditsManager manager)
 		{
+			TextLocation = new Vector2(Resolution.TitleSafeArea.Center.X, Resolution.TitleSafeArea.Center.Y);
+			_manager = manager;
 			TextDirection = new Vector2(TextVelocity, TextVelocity);
 			Text = new FontBuddy();
 		}
@@ -49,22 +55,32 @@ namespace MenuBuddySample
 
 		public override void LoadContent()
 		{
-			Text.Font = ScreenManager.Game.Content.Load<SpriteFont>("ArialBlack48");
+			Text.Font = ScreenManager.Game.Content.Load<SpriteFont>("ArialBlack72");
 		}
 
 		public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
 		{
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
+			//does the uesr want to exit?
+			if (Keyboard.GetState().IsKeyDown(Keys.Space))
+			{
+				//Load the main menu back up
+				LoadingScreen.Load(ScreenManager, false, null, ScreenManager.GetMainMenuScreenStack());
+
+				//the game isn't playing anymore
+				_manager.GameInPlay = false;
+			}
+
 			//move the text
 			TextLocation += TextDirection;
 
 			//bounce the text off the walls
-			if (TextLocation.X <= 0)
+			if ((TextLocation.X - 256) <= 0)
 			{
 				TextDirection.X = TextVelocity;
 			}
-			else if ((TextLocation.X + 128) >= Resolution.ScreenArea.Right)
+			else if ((TextLocation.X + 256) >= Resolution.ScreenArea.Right)
 			{
 				TextDirection.X = -TextVelocity;
 			}
@@ -85,7 +101,12 @@ namespace MenuBuddySample
 
 			//draw the text
 			ScreenManager.SpriteBatchBegin();
-			Text.Write("Top Screen!!!", TextLocation, Justify.Center, 1.0f, Color.Cyan, ScreenManager.SpriteBatch, 0.0f);
+			Text.Write("Gameplay Screen!!!", TextLocation, Justify.Center, 1.0f, Color.Red, ScreenManager.SpriteBatch, 0.0f);
+
+			Vector2 quitLocation = new Vector2(Resolution.TitleSafeArea.Center.X, Resolution.TitleSafeArea.Top);
+
+			Text.Write("Press 'space' to end game", quitLocation, Justify.Center, 0.75f, Color.Green, ScreenManager.SpriteBatch, 0.0f);
+
 			ScreenManager.SpriteBatchEnd();
 		}
 

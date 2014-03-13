@@ -4,7 +4,7 @@ using MenuBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MenuBuddySample
+namespace InsertCoinBuddySample
 {
 	/// <summary>
 	/// The background screen sits behind all the other menu screens.
@@ -93,10 +93,10 @@ namespace MenuBuddySample
 
 			//Draw the game title!
 			_titleText.ShadowColor = new Color(0.15f, 0.15f, 0.15f, TransitionAlpha);
-			_titleText.Write("MenuBuddySample!!!",
+			_titleText.Write("InsertCoinBuddySample!!!",
 			                new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y * 0.05f),
 			                Justify.Center,
-			                1.5f,
+				1.2f,
 			                new Color(0.85f, 0.85f, 0.85f, TransitionAlpha),
 			                spriteBatch,
 			                time);
