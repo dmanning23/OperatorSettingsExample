@@ -3,8 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ResolutionBuddy;
+using OperatorSettingsBuddy;
 
-namespace InsertCoinBuddySample
+namespace OperatorSettingsExample
 {
 	/// <summary>
 	/// This is the main type for your game
@@ -42,6 +43,10 @@ namespace InsertCoinBuddySample
 			// Activate the first screens.
 			_ScreenManager.AddScreen(_ScreenManager.GetMainMenuScreenStack(), null);
 			_ScreenManager.SetTopScreen(new InsertCoinScreen("ArialBlack24", "ArialBlack24", _creditManager), null);
+
+			//add the operator settings thing
+			SettingsComponent<SettingsScreen> buddy = new SettingsComponent<SettingsScreen>(this, _ScreenManager, "OperatorSettingsExample", Keys.D3);
+			Components.Add(buddy);
 		}
 
 		/// <summary>

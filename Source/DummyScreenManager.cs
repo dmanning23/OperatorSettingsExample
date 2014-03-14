@@ -1,7 +1,7 @@
 using MenuBuddy;
 using Microsoft.Xna.Framework;
 
-namespace InsertCoinBuddySample
+namespace OperatorSettingsExample
 {
 	public class DummyScreenManager : ScreenManager
 	{

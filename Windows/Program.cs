@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 #endregion
-namespace InsertCoinBuddySample.Windows
+namespace OperatorSettingsExample.Windows
 {
 	static class Program
 	{

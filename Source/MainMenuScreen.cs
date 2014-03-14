@@ -1,7 +1,7 @@
 using MenuBuddy;
 using Microsoft.Xna.Framework;
 
-namespace InsertCoinBuddySample
+namespace OperatorSettingsExample
 {
 	/// <summary>
 	/// The main menu screen is the first thing displayed when the game starts up.

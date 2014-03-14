@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ResolutionBuddy;
 
-namespace InsertCoinBuddySample
+namespace OperatorSettingsExample
 {
 	/// <summary>
 	/// This screen displays on top of all the other screens
