@@ -28,3 +28,6 @@
 [submodule "externals/InsertCoinBuddy"]
 	path = externals/InsertCoinBuddy
 	url = git@github.com:dmanning23/InsertCoinBuddy.git
+[submodule "externals/MatrixExtensions"]
+	path = externals/MatrixExtensions
+	url = git@github.com:dmanning23/MatrixExtensions.git

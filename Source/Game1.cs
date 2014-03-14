@@ -29,9 +29,10 @@ namespace InsertCoinBuddySample
 			Content.RootDirectory = "Content";
 
 			//Setup the credits manager.
-			_creditManager = new CreditsManager();
+			_creditManager = new CreditsManager(this);
 			_creditManager.CoinsPerCredit = 3; //$.75 per game
 			_creditManager.FreePlay = false;
+			Components.Add(_creditManager);
 
 			// Create the screen manager component.
 			_ScreenManager = new DummyScreenManager(this);
@@ -86,9 +87,6 @@ namespace InsertCoinBuddySample
 			{
 				Exit();
 			}
-
-			//Update the credit manager...
-			_creditManager.Update();
 
 			//Listen for game start...
 			if (Keyboard.GetState().IsKeyDown(Keys.W))
