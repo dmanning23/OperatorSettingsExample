@@ -31,3 +31,9 @@
 [submodule "externals/MatrixExtensions"]
 	path = externals/MatrixExtensions
 	url = git@github.com:dmanning23/MatrixExtensions.git
+[submodule "externals/FileBuddy"]
+	path = externals/FileBuddy
+	url = git@github.com:dmanning23/FileBuddy.git
+[submodule "externals/EasyStorage"]
+	path = externals/EasyStorage
+	url = git@github.com:dmanning23/EasyStorage.git
