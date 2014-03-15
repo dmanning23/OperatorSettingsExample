@@ -45,7 +45,7 @@ namespace OperatorSettingsExample
 			_ScreenManager.SetTopScreen(new InsertCoinScreen("ArialBlack24", "ArialBlack24", _creditManager), null);
 
 			//add the operator settings thing
-			SettingsComponent<SettingsScreen> buddy = new SettingsComponent<SettingsScreen>(this, _ScreenManager, "OperatorSettingsExample", Keys.D3);
+			SettingsComponent<SettingsScreen> buddy = new SettingsComponent<SettingsScreen>(this, _ScreenManager, "OperatorSettingsExample", Keys.Space);
 			Components.Add(buddy);
 		}
 
@@ -61,7 +61,7 @@ namespace OperatorSettingsExample
 			Resolution.SetDesiredResolution(1280, 720);
 
 			//set the desired resolution
-			Resolution.SetScreenResolution(640, 480, true);
+			Resolution.SetScreenResolution(640, 480, false);
 
 			// TODO: Add your initialization logic here
 			base.Initialize();
